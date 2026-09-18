@@ -3,10 +3,8 @@ node_modules/
 
 # Environment configuration files
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+!.env.example
 
 # Build outputs
 dist/
@@ -17,4 +15,3 @@ build/
 Thumbs.db
 .vscode/
 .idea/
-

@@ -11,17 +11,16 @@ const startServer = async () => {
   try {
     // Attempt database connection
     await connectDB();
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`Server running on port ${PORT}.`);
     });
   } catch (error) {
     console.error('Failed to establish MongoDB connection on startup.');
     console.log(`Starting server on port ${PORT} (Database disconnected)...`);
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`Server running on port ${PORT} with database disconnected.`);
     });
   }
 };
 
 startServer();
-

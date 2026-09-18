@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
 /**
- * @desc    Health check endpoint to test API & DB connectivity
+ * @desc    Health check endpoint for Render monitoring & uptime testing
  * @route   GET /api/health
- * @access  Public
+ * @access  Public (No Auth required)
  */
 export const getHealthStatus = (req, res) => {
   const dbStateMap = {
@@ -17,10 +17,9 @@ export const getHealthStatus = (req, res) => {
   const databaseStatus = dbStateMap[dbState] || 'unknown';
 
   res.status(200).json({
-    success: true,
-    message: 'Task Management System API is running',
+    status: 'ok',
+    message: 'Task Management Backend is running',
     database: databaseStatus,
     timestamp: new Date().toISOString(),
   });
 };
-
