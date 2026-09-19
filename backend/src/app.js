@@ -5,7 +5,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 const app = express();
 
-// Configured CORS middleware for production & development
+// Configured CORS middleware for production (Vercel/Render) & development
 const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
 const allowedOrigins = clientUrl.split(',').map((url) => url.trim());
 
@@ -15,10 +15,11 @@ app.use(
       // Allow requests with no origin (like mobile apps, curl, or Postman)
       if (!origin) return callback(null, true);
 
-      // Check if origin matches allowed list, wildcard, localhost, or onrender.com
+      // Check if origin matches allowed list, wildcard, localhost, vercel.app, or onrender.com
       if (
         allowedOrigins.includes('*') ||
         allowedOrigins.includes(origin) ||
+        origin.endsWith('.vercel.app') ||
         origin.endsWith('.onrender.com') ||
         origin.includes('localhost')
       ) {

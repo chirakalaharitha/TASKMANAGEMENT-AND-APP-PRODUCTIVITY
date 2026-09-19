@@ -2,6 +2,7 @@ services:
   - type: web
     name: task-management-backend
     runtime: node
+    plan: free
     rootDir: backend
     buildCommand: npm install
     startCommand: node src/server.js
@@ -10,12 +11,9 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-
       - key: MONGODB_URI
         sync: false
-
       - key: JWT_SECRET
         sync: false
-
       - key: CLIENT_URL
         sync: false
